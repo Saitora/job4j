@@ -33,6 +33,7 @@ public class SortDepListApp
 
         List<String> sortedDepList;
         sortedDepList = getSortedDepList(depList, args[2]);
+        System.out.println("".join("\n", sortedDepList));
     }
 
     public static void printHelp() {
@@ -59,6 +60,8 @@ public class SortDepListApp
         List<String> sortedDepList;
 
         DepTree depTree = new DepTree();
+        depTree.fillTree(unsortedDepList);
+        sortedDepList = depTree.getSorterDepStructureList(mode);
 
         return sortedDepList;
     }

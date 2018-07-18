@@ -13,8 +13,7 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 
 
-public class SortDepListAppTest
-{
+public class SortDepListAppTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -54,15 +53,17 @@ public class SortDepListAppTest
 
     @Test
     public void getDepListFromFileShouldReturnDepListFromFile() throws IOException {
-        String fname = SortDepListAppTest.class.getResource("dep_list.txt").getFile();
+        String fname = SortDepListAppTest.class.getResource("baseDepList.txt").getFile();
         String returnedContent = "".join("\n", SortDepListApp.getDepListFromFile(fname));
         String content = new String(Files.readAllBytes(Paths.get(fname)));
         assertEquals(content, returnedContent);
     }
 
-    @Test
+    /*@Test
     public void getSortedDepListShouldReturnAscSortedListWhenModeIsA() {
-
+        String fname = SortDepListAppTest.class.getResource("baseDepList.txt").getFile();
+        SortDepListApp.main(new String[]{fname, fname, "D"});
+        assertEquals("", outContent.toString());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class SortDepListAppTest
     @Test
     public void getSortedDepListShouldReturnAscSortedListWithAdditionalRowsWhenNotAllDepsPresentAndModeIsA() {
 
-    }
+    }*/
 
     @After
     public void restoreStreams() {
