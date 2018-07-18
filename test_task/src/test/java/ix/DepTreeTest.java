@@ -2,9 +2,9 @@ package ix;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +14,12 @@ public class DepTreeTest {
 
     public static List<String> getStringListFromFile(String fname) throws IOException {
         List<String> depList = new ArrayList<>();
-        String content;
-        content = new String(Files.readAllBytes(Paths.get(fname)));
-        String[] listContent = content.split("\n");
-        for (String row: listContent) {
-            depList.add(row);
+        BufferedReader br = new BufferedReader(new FileReader(fname));
+
+        for (String line = br.readLine(); line != null; line = br.readLine()) {
+            depList.add(line);
         }
+
         return depList;
     }
 
