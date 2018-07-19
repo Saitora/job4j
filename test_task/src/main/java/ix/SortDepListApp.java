@@ -64,5 +64,6 @@ public class SortDepListApp
         sortedDepList = depTree.getSorterDepStructureList(mode);
 
         return sortedDepList;
+
     }
 }
