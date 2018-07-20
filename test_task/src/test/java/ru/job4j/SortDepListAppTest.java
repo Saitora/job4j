@@ -1,8 +1,9 @@
-package ix;
+package ru.job4j;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.jobj4j.SortDepListApp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -19,13 +20,13 @@ public class SortDepListAppTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    private final String ERR_LAST_ARG = "Error! Wrong last argument.\n";
-    private final String ERR_ARGS_NUM = "Error! Wrong arguments number.\n";
-    private final String ERR_WRONG_INPUT_FILE = "Error! Input file not found!\n";
-    private final String HELP_STRING = "Usage: sort_deps [input_file] [output_file] [-A|-D]\n" +
-            "    Options\n" +
-            "      -A    Ascending order\n" +
-            "      -D    Descending order\n";
+    private static final String ERR_LAST_ARG = "Error! Wrong last argument.\n";
+    private static final String ERR_ARGS_NUM = "Error! Wrong arguments number.\n";
+    private static final String ERR_WRONG_INPUT_FILE = "Error! Input file not found!\n";
+    private static final String HELP_STRING = "Usage: sort_deps [input_file] [output_file] [-A|-D]\n"
+            + "    Options\n"
+            + "      -A    Ascending order\n"
+            + "      -D    Descending order\n";
 
     @Before
     public void setUpStreams() {
@@ -54,7 +55,7 @@ public class SortDepListAppTest {
     @Test
     public void getDepListFromFileShouldReturnDepListFromFile() throws IOException {
         String fname = SortDepListAppTest.class.getResource("baseDepList.txt").getFile();
-        String returnedContent = "".join("\n", SortDepListApp.getDepListFromFile(fname));
+        String returnedContent = String.join("\n", SortDepListApp.getDepListFromFile(fname));
         String content = new String(Files.readAllBytes(Paths.get(fname)));
         assertEquals(content, returnedContent);
     }

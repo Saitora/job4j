@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <version>2.0</version>
     <name>fullstack</name>
-    <url></url>
+    <url>www.example.com</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -15,6 +15,7 @@
 
     <modules>
         <module>begin_chapter_001</module>
+        <module>test_task</module>
     </modules>
 
     <dependencies>

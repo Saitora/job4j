@@ -1,4 +1,4 @@
-package ix;
+package ru.jobj4j;
 
 import java.util.*;
 
@@ -7,13 +7,15 @@ public class DepTree {
     private TreeMap<String, DepTree> innerMap = new TreeMap<>();
 
     public void fillTree(List<String> depList) {
-        for(String row: depList) {
+        for (String row: depList) {
             addDepHier(Arrays.asList(row.split("\\\\")));
         }
     }
 
     private void addDepHier(List<String> depHier) {
-        if (depHier.size() == 0) return;
+        if (depHier.size() == 0) {
+            return;
+        }
         String dep = depHier.get(0);
         if (!innerMap.containsKey(dep)) {
             innerMap.put(dep, null);
@@ -43,7 +45,7 @@ public class DepTree {
             return;
         }
 
-        for(String key: keySet) {
+        for (String key: keySet) {
             if (prefix.equals("")) {
                 sortedDepStructure.add(key);
             } else {

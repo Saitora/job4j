@@ -1,4 +1,4 @@
-package ix;
+package ru.jobj4j;
 
 
 import java.io.IOException;
@@ -7,16 +7,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SortDepListApp
-{
-    public static void main( String[] args ) {
+public class SortDepListApp {
+    public static void main(String[] args) {
         if (args.length != 3) {
             System.out.println("Error! Wrong arguments number.");
             printHelp();
             return;
         }
 
-        if ( !(args[2] == "A" || args[2] == "D") ) {
+        if (!(args[2].equals("A") || args[2].equals("D"))) {
             System.out.println("Error! Wrong last argument.");
             printHelp();
             return;
@@ -33,15 +32,15 @@ public class SortDepListApp
 
         List<String> sortedDepList;
         sortedDepList = getSortedDepList(depList, args[2]);
-        System.out.println("".join("\n", sortedDepList));
+        System.out.println(String.join("\n", sortedDepList));
     }
 
-    public static void printHelp() {
+    private static void printHelp() {
         System.out.println(
-                "Usage: sort_deps [input_file] [output_file] [-A|-D]\n" +
-                        "    Options\n" +
-                        "      -A    Ascending order\n" +
-                        "      -D    Descending order"
+                "Usage: sort_deps [input_file] [output_file] [-A|-D]\n"
+                        + "    Options\n"
+                        + "      -A    Ascending order\n"
+                        + "      -D    Descending order"
         );
     }
 
@@ -56,7 +55,7 @@ public class SortDepListApp
         return depList;
     }
 
-    public static List<String> getSortedDepList(List<String> unsortedDepList, String mode) {
+    private static List<String> getSortedDepList(List<String> unsortedDepList, String mode) {
         List<String> sortedDepList;
 
         DepTree depTree = new DepTree();

@@ -1,6 +1,7 @@
-package ix;
+package ru.job4j;
 
 import org.junit.Test;
+import ru.jobj4j.DepTree;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class DepTreeTest {
 
-    public static List<String> getStringListFromFile(String fname) throws IOException {
+    private static List<String> getStringListFromFile(String fname) throws IOException {
         List<String> depList = new ArrayList<>();
         BufferedReader br = new BufferedReader(new FileReader(fname));
 
@@ -32,7 +33,7 @@ public class DepTreeTest {
         List<String> sortedList = dt.getSorterDepStructureList("D");
         String expectedFname = DepTreeTest.class.getResource("descendingDepList.txt").getFile();
         List<String> expectedDepList = getStringListFromFile(expectedFname);
-        assertEquals("".join("\n", expectedDepList), "".join("\n", sortedList));
+        assertEquals(String.join("\n", expectedDepList), String.join("\n", sortedList));
     }
 
     @Test
@@ -44,7 +45,7 @@ public class DepTreeTest {
         List<String> sortedList = dt.getSorterDepStructureList("A");
         String expectedFname = DepTreeTest.class.getResource("ascendingDepList.txt").getFile();
         List<String> expectedDepList = getStringListFromFile(expectedFname);
-        assertEquals("".join("\n", expectedDepList), "".join("\n", sortedList));
+        assertEquals(String.join("\n", expectedDepList), String.join("\n", sortedList));
     }
 
 }
