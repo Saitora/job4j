@@ -16,6 +16,7 @@
     <modules>
         <module>begin_chapter_001</module>
         <module>test_task</module>
+        <module>junior</module>
     </modules>
 
     <dependencies>
