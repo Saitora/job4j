@@ -28,13 +28,9 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        int nextValue;
-        if (hasNext()) {
-            nextValue = innerArray[index];
-            index++;
-        } else {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        return nextValue;
+        return innerArray[index++];
     }
 }
