@@ -22,22 +22,24 @@ public class SimpleArray<T> implements Iterable<T> {
         }
     }
 
-    public void set(int index, T model) {
-        if (index < 0 || index >= currentEnd) {
-            throw new ArrayIndexOutOfBoundsException();
-        } else {
+    public boolean set(int index, T model) {
+        boolean result = false;
+        if (index >= 0 && index < currentEnd) {
             array[index] = model;
+            result = true;
         }
+        return result;
     }
 
-    public void delete(int index) {
-        if (index < 0 || index >= currentEnd) {
-            throw new ArrayIndexOutOfBoundsException();
-        } else {
+    public boolean delete(int index) {
+        boolean result = false;
+        if (index >= 0 && index < currentEnd) {
             System.arraycopy(array, index + 1, array, index, array.length - 1 - index);
             array[size - 1] = null;
             currentEnd--;
+            result = true;
         }
+        return result;
     }
 
     public T get(int index) {
@@ -49,35 +51,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-
-            private Object[] array;
-            private int size;
-            private int currentIndex = 0;
-
-
-            public Iterator<T> initialize(final Object[] array, int currentEnd) {
-                this.array = array;
-                this.size = currentEnd;
-                return this;
-            }
-
-            @Override
-            public boolean hasNext() {
-                return (currentIndex < size) ? true : false;
-            }
-
-            @Override
-            public T next() {
-                Object result = null;
-                if (hasNext()) {
-                    result = array[currentIndex++];
-                } else {
-                    throw new NoSuchElementException();
-                }
-                return (T) result;
-            }
-        }.initialize(array, currentEnd);
+        return new SimpleArrayIterator(array, currentEnd);
     }
 
     @Override
@@ -109,5 +83,34 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private boolean isFull() {
         return (currentEnd == size) ? true : false;
+    }
+
+    private class SimpleArrayIterator implements Iterator<T> {
+
+        private Object[] array;
+        private int size;
+        private int currentIndex = 0;
+
+        public SimpleArrayIterator(final Object[] array, int currentEnd) {
+            this.array = array;
+            this.size = currentEnd;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return (currentIndex < size) ? true : false;
+        }
+
+        @Override
+        public T next() {
+            Object result = null;
+            if (hasNext()) {
+                result = array[currentIndex++];
+            } else {
+                throw new NoSuchElementException();
+            }
+            return (T) result;
+        }
+
     }
 }

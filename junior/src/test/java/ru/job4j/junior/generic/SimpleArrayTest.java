@@ -81,7 +81,7 @@ public class SimpleArrayTest {
         sa.add("4");
         sa.add("5");
         String result = "";
-        for(String el : sa) {
+        for (String el : sa) {
             result += el;
         }
         assertThat(result, is("12345"));
