@@ -23,13 +23,10 @@ public class MatrixIterator implements Iterator {
 
     @Override
     public Object next() {
-        int element;
-        if (hasNext()) {
-            element = matrix[yIndex][xIndex];
-            xIndex++;
-        } else {
+        if (!hasNext()) {
             throw new NoSuchElementException();
         }
+        int element = matrix[yIndex][xIndex++];
         if (matrix[yIndex].length == xIndex) {
             yIndex++;
             xIndex = 0;
