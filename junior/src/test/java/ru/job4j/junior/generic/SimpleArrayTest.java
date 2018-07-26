@@ -34,16 +34,34 @@ public class SimpleArrayTest {
         assertThat(sa.getSize(), is(0));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void whenRemoveWrongIndexShouldThrowException() {
+    @Test
+    public void whenRemoveWrongIndexShouldReturnFalse() {
         SimpleArray<String> sa = new SimpleArray<>(1);
-        sa.delete(0);
+        boolean deleteResult = sa.delete(0);
+        assertThat(deleteResult, is(false));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void whenSetToEmptyArrayShouldThrowException() {
+    @Test
+    public void whenRemoveRightIndexShouldReturnTrue() {
         SimpleArray<String> sa = new SimpleArray<>(1);
-        sa.set(1, "1");
+        sa.add("1");
+        boolean deleteResult = sa.delete(0);
+        assertThat(deleteResult, is(true));
+    }
+
+    @Test
+    public void whenSetToEmptyArrayShouldReturnFalse() {
+        SimpleArray<String> sa = new SimpleArray<>(1);
+        boolean setResult = sa.set(1, "1");
+        assertThat(setResult, is(false));
+    }
+
+    @Test
+    public void whenSetToCorrectIndexShouldReturnTrue() {
+        SimpleArray<String> sa = new SimpleArray<>(1);
+        sa.add("0");
+        boolean setResult = sa.set(0, "1");
+        assertThat(setResult, is(true));
     }
 
     @Test
