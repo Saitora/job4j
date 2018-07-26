@@ -26,13 +26,10 @@ public class Converter {
 
             @Override
             public Integer next() {
-                Integer value;
-                if (hasNext()) {
-                    value = currentIterator.next();
-                } else {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return value;
+                return currentIterator.next();
             }
         };
     }
