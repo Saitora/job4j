@@ -12,6 +12,34 @@ public class SimpleArrayList<E> implements Iterable<E> {
     private Node<E> first;
     private Node<E> last;
 
+    public static boolean hasCycles(Node f) {
+        if (f == null) {
+            throw new IllegalArgumentException();
+        }
+        boolean result = false;
+        Node current = f;
+        Node iteration = null;
+        outer: while (true) {
+            if (current.next == null) {
+                break;
+            }
+            if (current.next == current) {
+                result = true;
+                break;
+            }
+            iteration = f;
+            while (iteration != current) {
+                if (current.next == iteration) {
+                    result = true;
+                    break outer;
+                }
+                iteration = iteration.next;
+            }
+            current = current.next;
+        }
+        return result;
+    }
+
     /**
      * Метод вставляет в начало списка данные.
      */
@@ -114,7 +142,7 @@ public class SimpleArrayList<E> implements Iterable<E> {
     /**
      * Класс предназначен для хранения данных.
      */
-    private static class Node<E> {
+    public static class Node<E> {
 
         E date;
         Node<E> next;

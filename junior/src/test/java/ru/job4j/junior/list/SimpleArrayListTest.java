@@ -49,4 +49,37 @@ public class SimpleArrayListTest {
         list.addToEnd("3");
         assertThat(String.join("", list), is("123"));
     }
+
+    @Test
+    public void whenListHasCyclesShouldReturnTrue() {
+        SimpleArrayList.Node<String> first = new SimpleArrayList.Node<>("1");
+        SimpleArrayList.Node<String> second = new SimpleArrayList.Node<>("2");
+        first.next = second;
+        second.next = first;
+        boolean result = SimpleArrayList.hasCycles(first);
+        assertThat(result, is(true));
+    }
+
+    @Test
+    public void whenListHasNoCyclesShouldReturnFalse() {
+        SimpleArrayList.Node<String> first = new SimpleArrayList.Node<>("1");
+        SimpleArrayList.Node<String> second = new SimpleArrayList.Node<>("2");
+        SimpleArrayList.Node<String> third = new SimpleArrayList.Node<>("3");
+        first.next = second;
+        second.next = third;
+        boolean result = SimpleArrayList.hasCycles(first);
+        assertThat(result, is(false));
+    }
+
+    @Test
+    public void whenListHasInnerCyclesShouldReturnTrue() {
+        SimpleArrayList.Node<String> first = new SimpleArrayList.Node<>("1");
+        SimpleArrayList.Node<String> second = new SimpleArrayList.Node<>("2");
+        SimpleArrayList.Node<String> third = new SimpleArrayList.Node<>("3");
+        first.next = second;
+        second.next = third;
+        third.next = second;
+        boolean result = SimpleArrayList.hasCycles(first);
+        assertThat(result, is(true));
+    }
 }
