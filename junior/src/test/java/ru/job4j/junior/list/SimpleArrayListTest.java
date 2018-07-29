@@ -40,4 +40,13 @@ public class SimpleArrayListTest {
         Integer result = list.delete();
         assertThat(result, is((Integer) null));
     }
+
+    @Test
+    public void whenAddToEndShouldBeCorrect() {
+        SimpleArrayList<String> list = new SimpleArrayList<>();
+        list.addToEnd("1");
+        list.addToEnd("2");
+        list.addToEnd("3");
+        assertThat(String.join("", list), is("123"));
+    }
 }
