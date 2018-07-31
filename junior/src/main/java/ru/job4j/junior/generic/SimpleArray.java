@@ -51,7 +51,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new SimpleArrayIterator(array, currentEnd);
+        return new SimpleArrayIterator();
     }
 
     @Override
@@ -86,9 +86,9 @@ public class SimpleArray<T> implements Iterable<T> {
         private final int size;
         private int currentIndex = 0;
 
-        public SimpleArrayIterator(final Object[] array, final int currentEnd) {
-            this.array = array;
-            this.size = currentEnd;
+        public SimpleArrayIterator() {
+            this.array = SimpleArray.this.array;
+            this.size = SimpleArray.this.currentEnd;
         }
 
         @Override
