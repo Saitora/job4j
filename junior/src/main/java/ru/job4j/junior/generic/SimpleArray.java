@@ -5,9 +5,9 @@ import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
 
-    Object[] array;
-    int currentEnd = 0;
-    int size = 0;
+    private Object[] array;
+    private int currentEnd = 0;
+    private int size = 0;
 
     public SimpleArray(int size) {
         array = new Object[size];
@@ -72,33 +72,28 @@ public class SimpleArray<T> implements Iterable<T> {
         return result;
     }
 
-    public String getRealToString() {
-        String result = "[";
-        return result;
-    }
-
     public int getSize() {
         return currentEnd;
     }
 
     private boolean isFull() {
-        return (currentEnd == size) ? true : false;
+        return currentEnd == size;
     }
 
     private class SimpleArrayIterator implements Iterator<T> {
 
-        private Object[] array;
-        private int size;
+        private final Object[] array;
+        private final int size;
         private int currentIndex = 0;
 
-        public SimpleArrayIterator(final Object[] array, int currentEnd) {
+        public SimpleArrayIterator(final Object[] array, final int currentEnd) {
             this.array = array;
             this.size = currentEnd;
         }
 
         @Override
         public boolean hasNext() {
-            return (currentIndex < size) ? true : false;
+            return currentIndex < size;
         }
 
         @Override
