@@ -20,7 +20,15 @@ public class SimpleArrayList<E> implements Iterable<E> {
         Node tortoise = f;
         Node hare = f;
         do {
-            if ((tortoise = tortoise.next) == null || (hare = hare.next) == null || (hare = hare.next) == null) {
+            tortoise = tortoise.next;
+            hare = hare.next;
+            if (hare != null) {
+                hare = hare.next;
+                if (tortoise == null || hare == null) {
+                    result = false;
+                    break;
+                }
+            } else {
                 result = false;
                 break;
             }
