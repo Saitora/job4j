@@ -16,27 +16,15 @@ public class SimpleArrayList<E> implements Iterable<E> {
         if (f == null) {
             throw new IllegalArgumentException();
         }
-        boolean result = false;
-        Node current = f;
-        Node iteration = null;
-        outer: while (true) {
-            if (current.next == null) {
+        boolean result = true;
+        Node tortoise = f;
+        Node hare = f;
+        do {
+            if ((tortoise = tortoise.next) == null || (hare = hare.next) == null || (hare = hare.next) == null) {
+                result = false;
                 break;
             }
-            if (current.next == current) {
-                result = true;
-                break;
-            }
-            iteration = f;
-            while (iteration != current) {
-                if (current.next == iteration) {
-                    result = true;
-                    break outer;
-                }
-                iteration = iteration.next;
-            }
-            current = current.next;
-        }
+        } while (tortoise != hare);
         return result;
     }
 
