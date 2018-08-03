@@ -18,9 +18,8 @@ public class UserTest {
     public void whenPutTwoUserInMapShouldPrintTwoUsers() {
         Calendar birthday = Calendar.getInstance();
         birthday.set(1990, 1, 1);
-        User userOne = new User("Biwis", birthday);
-        birthday.set(1985, 5, 5);
-        User userTwo = new User("Buthead", birthday);
+        User userOne = new User("UserName", birthday);
+        User userTwo = new User("UserName", birthday);
         Map<User, String> m = new HashMap<>();
         m.put(userOne, "first");
         m.put(userTwo, "second");
