@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
 public class UserTest {
 
     /**
-     * hashcode overridden, equals not, collision
+     * override hash and equals
      */
     @Test
     public void whenPutTwoUserInMapShouldPrintTwoUsers() {
@@ -26,6 +26,6 @@ public class UserTest {
         m.put(userOne, "first");
         m.put(userTwo, "second");
         System.out.println(m);
-        assertThat(m.size(), is(2));
+        assertThat(m.size(), is(1));
     }
 }
