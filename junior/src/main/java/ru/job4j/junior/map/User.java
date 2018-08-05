@@ -45,12 +45,17 @@ public class User {
     }
 
     @Override
-    public int hashCode() {
-        Object[] elements = {getName(), getChildren(), getBirthday()};
-        int result = 1;
-        for (Object element : elements) {
-            result = 31 * result + (element == null ? 0 : element.hashCode());
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-        return result;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return getChildren() == user.getChildren()
+                && Objects.equals(getName(), user.getName())
+                && Objects.equals(getBirthday(), user.getBirthday());
     }
+
 }
