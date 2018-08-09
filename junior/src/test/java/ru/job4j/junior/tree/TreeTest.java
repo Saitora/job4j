@@ -44,4 +44,35 @@ public class TreeTest {
         tree.forEach(l -> chars.append(l.toString()));
         assertThat(chars.toString(), is("236541"));
     }
+
+    @Test
+    public void whenCallIsBinaryShouldReturnTrueOnBinaryTree() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(3, 4);
+        tree.add(3, 5);
+        assertThat(tree.isBinary(), is(true));
+    }
+
+    @Test
+    public void whenCallIsBinaryShouldReturnFalseOnNonBinaryTree() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(3, 4);
+        tree.add(3, 5);
+        tree.add(3, 6);
+        assertThat(tree.isBinary(), is(false));
+    }
+
+    @Test
+    public void whenAddSameChildToParentShouldNotInsertIt() {
+        Tree<Integer> tree = new Tree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 2);
+        final StringBuilder chars = new StringBuilder();
+        tree.forEach(l -> chars.append(l.toString()));
+        assertThat(chars.toString(), is("21"));
+    }
 }

@@ -14,13 +14,25 @@ public class Tree<T extends Comparable<T>> implements SimpleTree<T> {
         this.root = root;
     }
 
+    public boolean isBinary() {
+        boolean result = true;
+        TreeIterator iter = new TreeIterator(root);
+        while (iter.hasNext()) {
+            Node node = iter.nextNode();
+            if (node.leaves().size() > 2) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
     @Override
     public boolean add(T parent, T child) {
         Optional<Node<T>> parentNode = findBy(parent);
         boolean result = false;
         if (parentNode.isPresent()) {
-            parentNode.get().add((Node<T>) new Node(child));
-            result = true;
+            result = parentNode.get().add((Node<T>) new Node(child));
         }
         return result;
     }
