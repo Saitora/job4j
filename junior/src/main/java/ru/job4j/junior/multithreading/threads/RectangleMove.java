@@ -4,8 +4,8 @@ import javafx.scene.shape.Rectangle;
 
 public class RectangleMove implements Runnable {
     private final Rectangle rect;
-    private boolean directionX = false;
-    private boolean directionY = false;
+    private int deltaX = 5;
+    private int deltaY = 5;
     private final int limitX;
     private final int limitY;
 
@@ -16,26 +16,14 @@ public class RectangleMove implements Runnable {
     }
 
     private void moveRect() {
-        if ((this.rect.getX() + this.rect.getWidth()) >= limitX) {
-            directionX = true;
-        } else if (this.rect.getX() <= 0) {
-            directionX = false;
+        if (((this.rect.getX() + this.rect.getWidth()) >= limitX) || (this.rect.getX() <= 0)) {
+            deltaX *= -1;
         }
-        if ((this.rect.getY() + this.rect.getHeight()) >= limitY) {
-            directionY = true;
-        } else if (this.rect.getY() <= 0) {
-            directionY = false;
+        if (((this.rect.getY() + this.rect.getHeight()) >= limitY) || (this.rect.getY() <= 0)) {
+            deltaY *= -1;
         }
-        if (directionX) {
-            this.rect.setX(this.rect.getX() - 1);
-        } else {
-            this.rect.setX(this.rect.getX() + 1);
-        }
-        if (directionY) {
-            this.rect.setY(this.rect.getY() - 1);
-        } else {
-            this.rect.setY(this.rect.getY() + 1);
-        }
+        this.rect.setX(this.rect.getX() + deltaX);
+        this.rect.setY(this.rect.getY() + deltaY);
     }
 
     @Override
