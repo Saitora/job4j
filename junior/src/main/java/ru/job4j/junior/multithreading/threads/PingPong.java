@@ -16,14 +16,15 @@ public class PingPong extends Application {
         Group group = new Group();
         Rectangle rect = new Rectangle(50, 100, 10, 10);
         group.getChildren().add(rect);
-        Thread pong = new Thread(new RectangleMove(rect, limitX, limitY));
+        RectangleMove recMoveRunner = new RectangleMove(rect, limitX, limitY);
+        Thread pong = new Thread(recMoveRunner);
         pong.start();
         stage.setScene(new Scene(group, limitX, limitY));
         stage.setTitle(JOB4J);
         stage.setResizable(false);
         rect.toFront();
         stage.setOnCloseRequest(e -> {
-            pong.stop();
+            recMoveRunner.stop();
         });
         stage.show();
     }

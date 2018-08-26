@@ -9,6 +9,8 @@ public class RectangleMove implements Runnable {
     private final int limitX;
     private final int limitY;
 
+    private volatile boolean isRunning = false;
+
     public RectangleMove(Rectangle rect, int limitX, int limitY) {
         this.rect = rect;
         this.limitX = limitX;
@@ -26,9 +28,14 @@ public class RectangleMove implements Runnable {
         this.rect.setY(this.rect.getY() + deltaY);
     }
 
+    public void stop() {
+        isRunning = false;
+    }
+
     @Override
     public void run() {
-        while (true) {
+        isRunning = true;
+        while (isRunning) {
             moveRect();
             try {
                 Thread.sleep(50);
