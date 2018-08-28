@@ -40,10 +40,10 @@ public class Info {
 
     @Override
     public String toString() {
-        return "Info{" +
-                "changed=" + getChangedCount() +
-                ", added=" + getAddedCount() +
-                ", deleted=" + getDeletedCount() +
-                '}';
+        return "Info{" + "changed="
+                + getChangedCount()
+                + ", added=" + getAddedCount()
+                + ", deleted=" + getDeletedCount()
+                + '}';
     }
 }

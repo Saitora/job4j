@@ -19,7 +19,7 @@ class Store {
         boolean incPrev = false;
         boolean incCurr = false;
 
-        while(itPrev.hasNext() && itCurrent.hasNext()) {
+        while (itPrev.hasNext() && itCurrent.hasNext()) {
             if (prevUser == null && currUser == null) {
                 prevUser = itPrev.next();
                 currUser = itCurrent.next();
@@ -104,10 +104,8 @@ class Store {
 
         @Override
         public String toString() {
-            return "User{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    '}';
+            return "User{" + "id=" + id
+                    + ", name='" + name + '\'' + '}';
         }
     }
 }
