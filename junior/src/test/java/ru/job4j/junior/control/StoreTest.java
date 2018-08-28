@@ -38,8 +38,9 @@ public class StoreTest {
     public void whenChangedDeletedAddedOneElementShouldReturnCorrectValues() {
         current.set(0, new Store.User(1, "changed"));
         current.add(new Store.User(4, "Fourth"));
-        current.remove(new Store.User(2, "Second"));
+        current.remove(new Store.User(3, "Third"));
         Info info = Store.diff(previous, current);
+        System.out.println(info);
         assertThat(
                 (info.getAddedCount() == 1) && (info.getChangedCount() == 1) && (info.getDeletedCount() == 1),
                 is(true)

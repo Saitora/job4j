@@ -37,4 +37,13 @@ public class Info {
     public List<Store.User> getDeleted() {
         return deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Info{" +
+                "changed=" + getChangedCount() +
+                ", added=" + getAddedCount() +
+                ", deleted=" + getDeletedCount() +
+                '}';
+    }
 }
