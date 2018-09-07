@@ -19,7 +19,7 @@ public class ThreadPool {
     }
 
     public void shutdown() {
-        for(Thread t : threads) {
+        for (Thread t : threads) {
             t.interrupt();
             try {
                 t.join();
